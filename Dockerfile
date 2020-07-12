@@ -9,5 +9,6 @@ RUN go get -ldflags "-X main.VERSION=$(date -u +%Y%m%d) -s -w" github.com/xtaci/
 FROM alpine:3.12.0
 RUN apk add --no-cache iptables
 COPY --from=builder /go/bin /bin
+ENV GOGC 10   # less memory usage
 EXPOSE 29900/udp
 EXPOSE 12948
